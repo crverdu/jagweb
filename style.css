@@ -1,0 +1,145 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+.header {
+    padding: 5px;
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    color: darkslategray;
+    display: flex;
+}
+
+.navbar {
+    padding: 5px;
+    width: auto;
+    height: auto;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+}
+
+.navbar a {
+    color: rgb(9, 65, 248);
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.navbar a:hover {
+    background-color: whitesmoke;
+    color: black;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.main {
+    flex: 100%;
+    background-color: lightyellow;
+    padding: 20px;
+}
+
+.imagen {
+    background-color: black;
+    width: 100%;
+    padding: 20px;
+}
+
+.footer {
+    padding: 10px;
+    text-align: center;
+    background-color: black;
+    height: inherit;
+    width: inherit;
+}
+
+@media screen and (max-width:700px) {
+    .row,
+    .navbar {
+        flex-direction: column-reverse;
+    }
+    .header {
+        flex-direction: column;
+    }
+    .offset-sm-4 {
+        margin-right: auto;
+    }
+}
+
+.desplegable,
+.menu-desplegable {
+    float: left;
+    overflow: hidden;
+}
+
+.desplegable,
+.btnDrop,
+.btnDrop-menu,
+.menu-desplegable {
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: rgb(9, 65, 248);
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.links-desplegables,
+.links-menu {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.links-desplegables a,
+.links-menu a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.show {
+    display: block;
+}
+
+.iconos {
+    width: "5px";
+    height: "5px";
+}
+
+.footer-text {
+    text-align: center;
+    font-family: Helvetica;
+    font: size 5px;
+    font: bold;
+    color: silver;
+}
+
+.offset-sm-4 {
+    margin-left: auto;
+}
+
+.col-sm-4 {
+    flex: 0 0 auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    width: auto;
+}
