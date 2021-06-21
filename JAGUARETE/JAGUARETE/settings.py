@@ -55,7 +55,7 @@ ROOT_URLCONF = 'JAGUARETE.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [r'E:\CursoPoloTic\ProyectoFinal\polofinal\JAGUARETE\JAGWEB\templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
