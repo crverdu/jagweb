@@ -14,7 +14,7 @@
     <div class="header">
         <nav class="navbar navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href=" {% url 'index' %} ">
                     <img src="{% static 'assets/logo/logo_transparent.png' %}" alt="logoEmpresa" width="180" height="100">
                 </a>
                 <div class="btn-group" role="group" aria-label="Basic example">
@@ -38,22 +38,22 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Inicio</a>
+                        <a class="nav-link" aria-current="page" href="{% url 'index' %}">Inicio</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Categorias
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Categoria 1</a></li>
-                            <li><a class="dropdown-item" href="#">Categoria 1</a></li>
-                            <li><a class="dropdown-item" href="#">Categoria 1</a></li>
-                            <li><a class="dropdown-item" href="#">Categoria 1</a></li>
-                            <li><a class="dropdown-item" href="#">Categoria 1</a></li>
+                            <li><a class="dropdown-item" href="{% url 'search' %}">Categoria 1</a></li>
+                            <li><a class="dropdown-item" href="{% url 'search' %}">Categoria 1</a></li>
+                            <li><a class="dropdown-item" href="{% url 'search' %}">Categoria 1</a></li>
+                            <li><a class="dropdown-item" href="{% url 'search' %}">Categoria 1</a></li>
+                            <li><a class="dropdown-item" href="{% url 'search' %}">Categoria 1</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Acerca de...</a>
+                        <a class="nav-link" aria-current="page" href="{% url 'about' %}">Acerca de...</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#">Contacto</a>
