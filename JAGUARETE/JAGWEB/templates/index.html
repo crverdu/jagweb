@@ -4,8 +4,8 @@
         <div class="card text-center" style="width: 18rem;">
             <img src="{% static 'assets/logo/logo.png' %}" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Producto #1</h5>
-                <p class="card-text">"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</p>
+                <h5 class="card-title">{lst_productos[0].nombre}</h5>
+                <p class="card-text">{lst_productos[0].descripcion} </p>
                 <a href="{% url 'product' %}" class="btn btn-primary">Ir al producto</a>
             </div>
         </div>
@@ -14,8 +14,8 @@
         <div class="card text-center" style="width: 18rem;">
             <img src="{% static 'assets/logo/logo.png' %}" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Producto #2</h5>
-                <p class="card-text">"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."</p>
+                <h5 class="card-title">{lst_productos[1].nombre}</h5>
+                <p class="card-text">{lst_productos[1].descripcion}</p>
                 <a href="{% url 'product' %}" class="btn btn-primary">Ir al producto</a>
             </div>
         </div>
@@ -24,20 +24,17 @@
         <div class="card text-center" style="width: 18rem;">
             <img src="{% static 'assets/logo/logo.png' %}" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Producto #3</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eget sollicitudin elit.</p>
+                <h5 class="card-title">{lst_productos[2].nombre}</h5>
+                <p class="card-text">{lst_productos[2].descripcion}</p>
                 <a href="{% url 'product' %}" class="btn btn-primary">Ir al producto</a>
             </div>
         </div>
     </div>
 </div>
 <div class="list-group">
-    <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #4</a>
-    <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #5</a>
-    <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #6</a>
-    <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #7</a>
-    <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #8</a>
-    <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #9</a>
-    <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #10</a>
+    {% for un_producto in range (3,len(lst_productos)-1) %}
+    <a href href="{% url 'product' %}" class="list-group-item list-group-item-action"> 
+            Nombre {{un_producto.nombre}} Descripcion {{un_producto.descripcion}}
+    </a> {% endfor %}
 </div>
 {% endblock %}

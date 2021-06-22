@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Producto, Usuario
 # Create your views here.
 
 
 def index(request):
-    return render(request, "index.html")
+    return render(request, "index.html",{
+        "lst_productos": Producto.objects.all()
+    })
 
 
 def about(request):
