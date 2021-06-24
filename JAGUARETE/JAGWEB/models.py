@@ -6,11 +6,11 @@ class Producto (models.Model):
     descripcion = models.CharField(max_length=250) #descripcion breve del producto 250 caracteres
     categoria = models.CharField(max_length=64) #categoria referenciada
     precio=models.FloatField() #precio del producto en float
-    imagen=models.CharField(max_length=10) #imagen del producto
+    imagen= models.ImageField(upload_to='products/', default='products/default.png')   #imagen del producto
 
     #obtener el objeto producto
     def __str__(self):
-        return f"Product ID #{self.id}:{self.nombre} - {self.descripcion} - {self.categoria} - {self.precio}"
+        return f"Product ID #{self.id}:{self.nombre} - {self.descripcion} - {self.categoria} - {self.precio} - {self.imagen} "
 
 #Clase Categoria de productos
 class Categoria(models.Model):

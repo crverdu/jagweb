@@ -1,40 +1,22 @@
 {% extends "layout.html" %} {% load static %} {% block body %}
 <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for producto in top3_prod %}
     <div class="col">
         <div class="card text-center" style="width: 18rem;">
-            <img src="{% static 'assets/logo/logo.png' %}" class="card-img-top" alt="...">
+            <img src=" {{ producto.imagen.url }} " class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">{lst_productos[0].nombre}</h5>
-                <p class="card-text">{lst_productos[0].descripcion} </p>
+                <h5 class="card-title">{{producto.nombre}}</h5>
+                <p class="card-text">{{producto.descripcion}} </p>
                 <a href="{% url 'product' %}" class="btn btn-primary">Ir al producto</a>
             </div>
         </div>
     </div>
-    <div class="col">
-        <div class="card text-center" style="width: 18rem;">
-            <img src="{% static 'assets/logo/logo.png' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{lst_productos[1].nombre}</h5>
-                <p class="card-text">{lst_productos[1].descripcion}</p>
-                <a href="{% url 'product' %}" class="btn btn-primary">Ir al producto</a>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card text-center" style="width: 18rem;">
-            <img src="{% static 'assets/logo/logo.png' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{lst_productos[2].nombre}</h5>
-                <p class="card-text">{lst_productos[2].descripcion}</p>
-                <a href="{% url 'product' %}" class="btn btn-primary">Ir al producto</a>
-            </div>
-        </div>
-    </div>
+    {% endfor %}
 </div>
 <div class="list-group">
-    {% for un_producto in range (3,len(lst_productos)-1) %}
+    {% for un_producto in top10_prod %}
     <a href href="{% url 'product' %}" class="list-group-item list-group-item-action"> 
-            Nombre {{un_producto.nombre}} Descripcion {{un_producto.descripcion}}
+            Nombre: {{un_producto.nombre}} Descripcion: {{un_producto.descripcion}}
     </a> {% endfor %}
 </div>
 {% endblock %}

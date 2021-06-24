@@ -45,12 +45,9 @@
                         Categorias
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            {%  %}
-                            <li><a class="dropdown-item" href="{% url 'search' %}">Categoria 1</a></li>
-                            <li><a class="dropdown-item" href="{% url 'search' %}">Categoria 1</a></li>
-                            <li><a class="dropdown-item" href="{% url 'search' %}">Categoria 1</a></li>
-                            <li><a class="dropdown-item" href="{% url 'search' %}">Categoria 1</a></li>
-                            <li><a class="dropdown-item" href="{% url 'search' %}">Categoria 1</a></li>
+                            {% for category in list_category %}
+                            <li><a class="dropdown-item" href="{% url 'search' %}">{{category.nombre}}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                     <li class="nav-item">

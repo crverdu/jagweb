@@ -3,10 +3,10 @@ from django.http import HttpResponse
 from .models import Producto, Usuario, Categoria
 # Create your views here.
 
-
 def index(request):
     return render(request, "index.html",{
-        "lst_productos": Producto.objects.all()
+        'top3_prod': Producto.objects.all().order_by("-id") [:3],
+        'top10_prod': Producto.objects.all().order_by("-id")[3:10]
     })
 
 
