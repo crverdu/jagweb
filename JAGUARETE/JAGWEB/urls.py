@@ -1,12 +1,11 @@
-from django.urls import path, re_path
-from django.urls.resolvers import URLPattern
+from django.urls import path
 from . import views
 
 
 urlpatterns = [
     path('', views.index, name="index"),
     path('about', views.about, name="about"),
-    path('search', views.searchResoult, name="search"),
-    path('product', views.product, name="product"),
+    path('search/<int:id_category>', views.search_category, name="search_category"),
+    path('producto/<int:idProd>', views.product, name="product"),
 ]
 

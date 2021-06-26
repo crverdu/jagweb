@@ -3,11 +3,11 @@
     {% for producto in top3_prod %}
     <div class="col">
         <div class="card text-center" style="width: 18rem;">
-            <img src=" {{ producto.imagen.url }} " class="card-img-top" alt="...">
+            <img src=" {{ producto.imagen.url }} " class="card-img-top" alt="{{producto.nombre}}">
             <div class="card-body">
                 <h5 class="card-title">{{producto.nombre}}</h5>
                 <p class="card-text">{{producto.descripcion}} </p>
-                <a href="{% url 'product' %}" class="btn btn-primary">Ir al producto</a>
+                <a href="{% url 'product' producto.id  %}" class="btn btn-primary">Ir al producto</a>
             </div>
         </div>
     </div>
@@ -15,8 +15,8 @@
 </div>
 <div class="list-group">
     {% for un_producto in top10_prod %}
-    <a href href="{% url 'product' %}" class="list-group-item list-group-item-action"> 
-            Nombre: {{un_producto.nombre}} Descripcion: {{un_producto.descripcion}}
+    <a href="{% url 'product' un_producto.id %}" class="list-group-item list-group-item-action"> 
+            Nombre: {{un_producto.nombre}}
     </a> {% endfor %}
 </div>
 {% endblock %}

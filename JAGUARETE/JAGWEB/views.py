@@ -13,8 +13,13 @@ def index(request):
 def about(request):
     return render(request, "about.html")
 
-def searchResoult(request):
-    return render(request,"searchResoult.html")
+def search_category(request, id_category):
+    return render(request,"searchResoult.html",{
+        'una_categoria': Categoria.objects.get(id=id_category),
+        'lst_productos': Producto.objects.filter(categoria=id_category)
+    })
 
-def product(request):
-    return render(request,"product.html")
+def product(request, idProd):
+    return render(request,"product.html",{
+        'un_producto': Producto.objects.get(id=idProd)
+    })

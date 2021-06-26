@@ -1,24 +1,21 @@
 {% extends "layout.html" %} {% load static %} {% block body %}
 <div class="row">
     <div class="card text-center">
-        <img src="{% static 'assets/logo/logo.png' %}" class="rounded mx-auto d-block" height="30%" width="60%" alt="Producto">
+        <img src="{{un_producto.imagen.url}}" class="rounded mx-auto d-block" height="30%" width="60%" alt="Producto">
         <div class="card-header">
-            Producto #1
+            {{un_producto.nombre}}
         </div>
         <div class="card-body">
             <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">Maecenas quam diam, vehicula quis purus ut, ullamcorper tristique leo. Ut rhoncus ante in ex accumsan, vel pretium elit tempor. Praesent arcu nisl, finibus sit amet tristique sit amet, sagittis nec urna. Cras condimentum, odio nec accumsan
-                porttitor, orci eros ullamcorper ante, in iaculis metus nunc at mi. Pellentesque vulputate vitae nunc id porttitor. Aenean vestibulum accumsan semper. Sed convallis, risus sit amet ultrices bibendum, ipsum ligula volutpat risus, a rutrum
-                sem enim ac sapien. Maecenas sed tellus eu sapien pretium pretium ac sed elit. Mauris imperdiet odio ac porttitor finibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam sed est sit amet
-                tortor porttitor congue. Nullam sit amet metus posuere, porttitor neque sed, porta nisi. Nullam metus lacus, tincidunt id neque sed, cursus condimentum nunc. </p>
+            <p class="card-text">{{un_producto.descripcion}}</p>
             <ul class="list-group">
-                <li class="list-group-item">Categoria 1</li>
-                <li class="list-group-item">Caracteristica 1</li>
+                <li class="list-group-item">{{un_producto.categoria}}</li>
+                <li class="list-group-item">{{un_producto.categoria}}</li>
                 <li class="list-group-item">Caracteristica 2</li>
                 <li class="list-group-item">Caracteristica 3</li>
                 <li class="list-group-item">Caracteristica 4</li>
             </ul>
-            <h5>Precio $1000.000</h5>
+            <h5>$ {{un_producto.precio}}</h5>
         </div>
         <div class="card-footer">
             <a href="#" class="btn btn-primary">Agregar Carrito</a>

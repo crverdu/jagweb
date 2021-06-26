@@ -1,20 +1,10 @@
 {% extends "layout.html" %} {% load static %} {% block body %}
 <div class="row">
     <h1>Resultados de </h1>
-    <h2>Item Buscados </h2>
+    <h2>Item de categor&iacute;a {{una_categoria.nombre}} </h2>
     <div class="list-group">
-        <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #1</a>
-        <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #1</a>
-        <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #1</a>
-        <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #1</a>
-        <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #1</a>
-        <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #1</a>
-        <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #1</a>
-        <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #1</a>
-        <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #1</a>
-        <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #1</a>
-        <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #1</a>
-        <a href="{% url 'product' %}" class="list-group-item list-group-item-action">Producto #1</a>
+        {% for un_producto in lst_productos %}
+        <a href="{% url 'product' un_producto.id %}" class="list-group-item list-group-item-action">{{un_producto.nombre}}</a> {% endfor %}
     </div>
 </div>
 {% endblock %}
