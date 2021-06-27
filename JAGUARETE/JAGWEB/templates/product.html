@@ -1,26 +1,20 @@
 {% extends "layout.html" %} {% load static %} {% block body %}
-<div class="row">
-    <div class="card text-center">
-        <img src="{{un_producto.imagen.url}}" class="rounded mx-auto d-block" height="30%" width="60%" alt="Producto">
-        <div class="card-header">
-            {{un_producto.nombre}}
+<div class="card mb-3" style="max-width: auto; max-height: auto;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{{un_producto.imagen.url}}" class="img-fluid rounded-start" alt="Producto">
         </div>
-        <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">{{un_producto.descripcion}}</p>
-            <ul class="list-group">
-                <li class="list-group-item">{{un_producto.categoria}}</li>
-                <li class="list-group-item">{{un_producto.categoria}}</li>
-                <li class="list-group-item">Caracteristica 2</li>
-                <li class="list-group-item">Caracteristica 3</li>
-                <li class="list-group-item">Caracteristica 4</li>
-            </ul>
-            <h5>$ {{un_producto.precio}}</h5>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h4 class="card-title">{{un_producto.nombre}}</h4>
+                <p class="card-text">{{un_producto.descripcion}}</p>
+                <h5>$ {{un_producto.precio}}</h5>
+                <p class="card-text"><small class="text-muted">{{un_producto.categoria.nombre}}</small></p>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-primary">Agregar Carrito</a>
+            </div>
         </div>
-        <div class="card-footer">
-            <a href="#" class="btn btn-primary">Agregar Carrito</a>
-        </div>
-
     </div>
 </div>
 {% endblock %}

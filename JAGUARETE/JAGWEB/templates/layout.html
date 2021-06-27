@@ -54,10 +54,10 @@
                         <a class="nav-link" aria-current="page" href="{% url 'about' %}">Acerca de...</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Contacto</a>
+                        <a class="nav-link" aria-current="page" href="mailto:cristian.krutki@gmail.com?subject=%20Jaguarete %20KAA %20S.A">Contacto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Agregar Prodcuto</a>
+                        <a class="nav-link" aria-current="page" href="{%  url 'add_product'  %}">Agregar Prodcuto</a>
                     </li>
                 </ul>
                 <form class="d-flex">
@@ -67,21 +67,16 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid">
-        <div class="main">
-            {% block body %} {% endblock %}
+    <div id="main" class="container-fluid">
+        {% block body %} {% endblock %}
+    </div>
+    <nav class="navbar sticky-bottom  bg-dark">
+        <div class="container" style="align-items: center; justify-content:center ">
+            <p style="color: whitesmoke;font-size:20px">JAGUARETE KAA S.A. ©2021 All rights reserved </p>
+
+            <p style="color:wheat; font-size:15px"> by Krutki Cristian Leonel</p>
         </div>
-    </div>
-    <div class="bd-footer py-2 mt-2 bg-dark">
-        <figure class="text-center">
-            <blockquote class="blockquote">
-                <p style="color: whitesmoke;">JAGUARETE KAA S.A. ©2021 All rights reserved</p>
-            </blockquote>
-            <figcaption class="blockquote-footer">
-                Power by Krutki Cristian Leonel
-            </figcaption>
-        </figure>
-    </div>
+    </nav>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 

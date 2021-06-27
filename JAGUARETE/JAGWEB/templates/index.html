@@ -1,13 +1,13 @@
 {% extends "layout.html" %} {% load static %} {% block body %}
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<div class="row row-cols-1 row-cols-lg-3 g-3">
     {% for producto in top3_prod %}
     <div class="col">
         <div class="card text-center" style="width: 18rem;">
             <img src=" {{ producto.imagen.url }} " class="card-img-top" alt="{{producto.nombre}}">
             <div class="card-body">
                 <h5 class="card-title">{{producto.nombre}}</h5>
-                <p class="card-text">{{producto.descripcion}} </p>
-                <a href="{% url 'product' producto.id  %}" class="btn btn-primary">Ir al producto</a>
+                <p class="card-text">$ {{producto.precio}} </p>
+                <a href="{% url 'product' producto.id %}" class="btn btn-primary">Ir al producto</a>
             </div>
         </div>
     </div>

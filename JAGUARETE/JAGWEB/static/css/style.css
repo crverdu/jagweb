@@ -30,3 +30,8 @@ body {
     color: rgb(1, 1, 65);
     border-radius: 5px;
 }
+
+.main {
+    background: rgb(15, 9, 117);
+    background: linear-gradient(90deg, rgba(15, 9, 117, 1) 0%, rgba(196, 9, 173, 1) 50%, rgba(27, 13, 115, 1) 100%);
+}
