@@ -1,3 +1,4 @@
+from django.http.request import HttpRequest
 from django.shortcuts import render,redirect
 from .forms import AddProducto
 from .models import Producto, Cliente, Categoria
@@ -23,14 +24,30 @@ def product(request, idProd):
     return render(request,"product.html",{
         'un_producto': Producto.objects.get(id=idProd)
     })
+class FormularioProductoView(HttpRequest):
 
-def add_product(request):
-    if request.method == "POST":
-        formulario = AddProducto(request.POST)
-        if formulario.is_valid():
-            post=formulario.save(commit=True)
-            return redirect('product',idProd = post.id)
-    else:
-        formulario= AddProducto()
-    return render(request,"product_add.html",{ 'form':formulario
-    })
+    def add_product(request):
+        producto = AddProducto()
+        return render(request,"product_add.html",{'form':producto})
+
+    def proc_formulario (request):
+        producto = AddProducto(request.POST)
+        if producto.is_valid():
+            producto.save()
+            producto = AddProducto()
+        return render(request,"product_add.html",{'form':producto,'mensaje':'Ok'})
+
+    def edit_produc (request,idProd):
+        producto = Producto.objects.filter(id=idProd).first()
+        form = AddProducto(instance=producto)
+        return render(request,"product_edit.html",{'form':form,'producto':producto})
+
+    def upd_produc (request,idProd):
+        producto = Producto.objects.get(id = idProd)
+        form = AddProducto(request.POST,instance = producto)
+        if form.is_valid():
+            form.save()
+        #producto = Producto.objects.get(id = idProd)
+        return render(request, "product.html", {
+            'un_producto':Producto.objects.get(id = idProd)
+        })

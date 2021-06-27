@@ -56,9 +56,11 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="mailto:cristian.krutki@gmail.com?subject=%20Jaguarete %20KAA %20S.A">Contacto</a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{%  url 'add_product'  %}">Agregar Prodcuto</a>
                     </li>
+                    {% endif %}
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Buscar Producto" aria-label="Search">

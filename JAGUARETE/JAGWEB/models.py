@@ -11,7 +11,7 @@ class Categoria(models.Model):
 #clase Producto
 class Producto (models.Model):
     nombre = models.CharField(max_length=180) #nombre del producto 180 caracteres max
-    descripcion = models.CharField(max_length=250) #descripcion breve del producto 250 caracteres
+    descripcion = models.TextField() #descripcion breve del producto 250 caracteres
     categoria = models.ForeignKey(Categoria,on_delete=models.CASCADE,related_name="categ") #categoria referenciada
     precio=models.FloatField() #precio del producto en float
     imagen= models.ImageField(upload_to='products/', default='products/default.png')   #imagen del producto

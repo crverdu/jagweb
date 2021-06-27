@@ -31,7 +31,7 @@ body {
     border-radius: 5px;
 }
 
-.main {
+.container {
     background: rgb(15, 9, 117);
     background: linear-gradient(90deg, rgba(15, 9, 117, 1) 0%, rgba(196, 9, 173, 1) 50%, rgba(27, 13, 115, 1) 100%);
 }
