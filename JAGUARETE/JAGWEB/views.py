@@ -31,7 +31,7 @@ class FormularioProductoView(HttpRequest):
         return render(request,"product_add.html",{'form':producto})
 
     def proc_formulario (request):
-        producto = AddProducto(request.POST)
+        producto = AddProducto(request.POST, request.FILES)
         if producto.is_valid():
             producto.save()
             producto = AddProducto()
@@ -44,10 +44,9 @@ class FormularioProductoView(HttpRequest):
 
     def upd_produc (request,idProd):
         producto = Producto.objects.get(id = idProd)
-        form = AddProducto(request.POST,instance = producto)
+        form = AddProducto(request.POST, request.FILES, instance = producto)
         if form.is_valid():
             form.save()
-        #producto = Producto.objects.get(id = idProd)
         return render(request, "product.html", {
             'un_producto':Producto.objects.get(id = idProd)
         })
