@@ -24,28 +24,3 @@ class Producto (models.Model):
 class Carrito (models.Model):
     fecha = models.DateTimeField(default=datetime.now)
     producto = models.ManyToManyField(Producto,blank=True,related_name="prodCarrito")
-
-
-
-
-#Clase Usuario
-class Usuario (models.Model):
-    nombre=models.CharField(max_length=64) #nombre
-    apellido=models.CharField(max_length=64) #Apeliido
-    correo=models.EmailField(primary_key=True)   #Correo
-    nombreUsuario = models.CharField(max_length=64) #nombre de usuario 64 caracteres
-        
-    class Meta: 
-        abstract = True
-
-class Cliente(Usuario):
-    compras = models.ForeignKey (Carrito, on_delete=models.CASCADE,related_name="carrito")
-
-    def __str__(self):
-        return f"User ID # {self.id}: {self.nombreUsuario} - {self.nombre} - {self.apellido} - {self.correo} - {self.compras} "
-
-class Staff (Usuario):
-    fechaIngreso = models.DateTimeField()
-
-    def __str__(self):
-        return f"User ID # {self.id}: {self.nombreUsuario} - {self.nombre} - {self.apellido} - {self.correo} - {self.fechaIngreso} "

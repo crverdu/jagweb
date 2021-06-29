@@ -18,12 +18,12 @@
                     <img src="{% static 'assets/logo/logo_transparent.png' %}" alt="logoEmpresa" width="180" height="100">
                 </a>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-outline-light"><img src="{% static 'assets/sign-in.png' %}" class="icon">
-                        Login</button>
-                    <button type="button" class="btn btn-outline-light"><img src="{% static 'assets/sign-out-option.png' %}" class="icon">
-                        Logout</button>
-                    <button type="button" class="btn btn-outline-light"><img src="{% static 'assets/register.png' %}" class="icon"> 
-                        Register</button>
+                    <a href="{% url 'login' %}" class="btn btn-outline-light"><img src="{% static 'assets/sign-in.png' %}" class="icon"> Login
+                    </a>
+                    <a href="{% url 'logout' %}" class="btn btn-outline-light"><img src="{% static 'assets/sign-out-option.png' %}" class="icon"> Logout
+                    </a>
+                    <a href="{% url 'user_reg' %}" class="btn btn-outline-light"><img src="{% static 'assets/register.png' %}" class="icon"> Registe
+                    </a>
                     <button type="button" class="btn btn-outline-light"><img src="{% static 'assets/shop.png' %}" class="icon">
                         Carrito</button>
                 </div>
