@@ -11,31 +11,37 @@
 </head>
 
 <body>
-    <div class="header">
-        <nav class="navbar navbar-dark bg-dark">
-            <div class="container">
+    <div class="container-fluid" id="header">
+        <div class="row justify-content-between" style="background-color: black;">
+            <div class="col-lg-2">
                 <a class="navbar-brand" href=" {% url 'index' %} ">
                     <img src="{% static 'assets/logo/logo_transparent.png' %}" alt="logoEmpresa" width="180" height="100">
                 </a>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="{% url 'login' %}" class="btn btn-outline-light"><img src="{% static 'assets/sign-in.png' %}" class="icon"> Login
+            </div>
+            <div class="col-lg-2 align-self-end" style="margin-bottom: 3px;">
+                <div class="btn-group" role="group">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="btn btn-outline-info"><img src="{% static 'assets/sign-out-option.png' %}" class="icon"> Logout
                     </a>
-                    <a href="{% url 'logout' %}" class="btn btn-outline-light"><img src="{% static 'assets/sign-out-option.png' %}" class="icon"> Logout
+                    {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-outline-info"><img src="{% static 'assets/sign-in.png' %}" class="icon"> Login
                     </a>
-                    <a href="{% url 'user_reg' %}" class="btn btn-outline-light"><img src="{% static 'assets/register.png' %}" class="icon"> Registe
+                    <a href="{% url 'user_reg' %}" class="btn btn-outline-info"><img src="{% static 'assets/register.png' %}" class="icon"> Register
                     </a>
-                    <button type="button" class="btn btn-outline-light"><img src="{% static 'assets/shop.png' %}" class="icon">
-                        Carrito</button>
+                    {% endif %} {% if perms.JAGWEB.carrito.view_carrito %}
+                    <a href="#" class="btn btn-outline-info"><img src="{% static 'assets/shop.png' %}" class="icon"> Carrito
+                    </a>
+                    {% endif %}
                 </div>
             </div>
-        </nav>
+        </div>
     </div>
     <div class="top-bar">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <img src="{% static 'assets/menu.png' %}" class="icon">
-            </button>
+                    <img src="{% static 'assets/menu.png' %}" class="icon">
+                </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
@@ -57,7 +63,7 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="mailto:cristian.krutki@gmail.com?subject=%20Jaguarete %20KAA %20S.A">Contacto</a>
                         </li>
-                        {% if user.is_authenticated %}
+                        {% if perms.JAGWEB.add_producto %}
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{%  url 'add_product'  %}">Agregar Prodcuto</a>
                         </li>
@@ -72,12 +78,12 @@
         </nav>
     </div>
     <div class="main">
-        <div class="container-fluid">
+        <div class="container-fluid" style="min-height: 100vh;">
             {% block body %} {% endblock %}
         </div>
     </div>
     <div class="footer">
-        <div class="row justify-content-center" style="background-color: black;">
+        <div class="row justify-content-center" style="background-color: black; height: 5%;">
             <div class="col-md-auto">
                 <p style="color: whitesmoke;font-size:20px">JAGUARETE KAA S.A. ©2021 All rights reserved </p>
             </div>

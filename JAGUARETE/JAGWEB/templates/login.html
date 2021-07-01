@@ -1,19 +1,17 @@
-{% extends 'layout.html' %} {% load static %} {% load crispy_forms_tags %}
-{% block body %}
-    <form  method='POST'>
-        {% csrf_token %}
-        <div class="form-floating mb-3">
+{% extends 'layout.html' %} {% load static %} {% load crispy_forms_tags %} {% block body %}
+<form method='POST'>
+    {% csrf_token %}
+    <div class="row rform justify-content-center">
+        <div class="rform form-floating mb-3">
             {{form.username|as_crispy_field}}
         </div>
-        <div class="form-floating">
+        <div class="rform form-floating">
             {{form.password|as_crispy_field}}
         </div>
         <div class="span" style="padding: 20px; text-align: center;">
             <button type="submit" class="btn btn-outline-light">Login</button>
         </div>
-    </form>
-    
-{% endblock body %}    
+    </div>
+</form>
 
-
-
+{% endblock body %}

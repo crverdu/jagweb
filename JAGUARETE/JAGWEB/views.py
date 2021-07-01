@@ -1,7 +1,8 @@
 from django.http.request import HttpRequest
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from .forms import AddProducto, RegisterUser
 from .models import Producto, Categoria
+from django.contrib.auth.decorators import login_required, permission_required
 # Create your views here.
 
 
@@ -42,23 +43,25 @@ class FormularioUsuarioView(HttpRequest):
 
 
 class FormularioProductoView(HttpRequest):
-
+    @login_required(login_url='/JAGWEB/usuario/login')
+    @permission_required('JAGWEB.add_producto',raise_exception='Permisos Insuficientes')
     def add_product(request):
         producto = AddProducto()
         return render(request, "product_add.html", {'form': producto})
-
+    @login_required(login_url='/JAGWEB/usuario/login')
     def proc_formulario(request):
         producto = AddProducto(request.POST, request.FILES)
         if producto.is_valid():
             producto.save()
             producto = AddProducto()
         return render(request, "product_add.html", {'form': producto, 'mensaje': 'Ok'})
-
+    @login_required(login_url='/JAGWEB/usuario/login')
+    @permission_required('JAGWEB.change_producto',raise_exception='Permisos Insuficientes')
     def edit_produc(request, idProd):
         producto = Producto.objects.filter(id=idProd).first()
         form = AddProducto(instance=producto)
         return render(request, "product_edit.html", {'form': form, 'producto': producto})
-
+    @login_required(login_url='/JAGWEB/usuario/login')
     def upd_produc(request, idProd):
         producto = Producto.objects.get(id=idProd)
         form = AddProducto(request.POST, request.FILES, instance=producto)
