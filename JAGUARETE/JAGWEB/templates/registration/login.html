@@ -1,0 +1,31 @@
+{% extends 'layout.html' %} {% load static %} {% load crispy_forms_tags %} 
+{% block body %} 
+    {% if form.errors %}
+        <p>El usuario y la clave no coinciden, por favor intente nuevamente.</p>
+    {% endif %}
+{% if next %} 
+    {% if user.is_authenticated %}
+        <div class="alert alert-info" role="alert">
+            Tu cuenta no tiene acceso a esta p&aacute; gina. Para proceder, por favor inicie sesi&oacute; n con una cuenta que tenga acceso.
+        </div>
+    {% else %}
+        <p>Inicie sesión para ver esta página.</p>
+    {% endif %} 
+{% endif %}
+<form method='post' action="{% url 'login' %}">
+    {% csrf_token %}
+    <div class="row rform justify-content-center">
+        <div class="rform form-floating mb-3">
+            {{form.username|as_crispy_field}}
+        </div>
+        <div class="rform form-floating">
+            {{form.password|as_crispy_field}}
+        </div>
+        <div class="span" style="padding: 20px; text-align: center;">
+            <button type="submit" class="btn btn-outline-light">Login</button>
+            <input type="hidden" name="next" value="{{ next }}" />
+        </div>
+    </div>
+</form>
+<a class="btn btn-outline-primary" href="{% url 'password_reset' %}">¿Olvidó su contraseña?</a>
+<a class="btn btn-outline-primary" href="{% url 'register' %}">Registrarse</a> {% endblock body %}

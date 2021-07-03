@@ -9,14 +9,21 @@ class AddProducto(forms.ModelForm):
         fields = ('nombre','descripcion','categoria','precio','imagen')
 
 class RegisterUser(UserCreationForm):
-    nombre=forms.CharField(max_length=64)
-    apellido=forms.CharField(max_length=64)
-    telefono=forms.CharField(max_length=15)
-    email = forms.EmailField()
-    password1=forms.CharField(label='Password',widget=forms.PasswordInput)
-    password2=forms.CharField(label='Confirmar Password',widget=forms.PasswordInput)
+    username = forms.CharField(
+        label='Usuario', widget=forms.TextInput(attrs={'class': 'usuario'}), max_length=150, required=True, help_text='Requerido. 150 caracteres o menos. Letras, dígitos y @ /. / + / - / _ solamente.')
+    first_name=forms.CharField(
+        label='Nombre', widget=forms.TextInput(attrs={'class': 'nombre'}), max_length=30, required=False, help_text='Opcional.')
+    last_name=forms.CharField(
+        label='Apellido', widget=forms.TextInput(attrs={'class': 'apellido'}), max_length=30, required=False, help_text='Opcional.')
+    telefono=forms.CharField(
+        label='Telefono', widget=forms.TextInput(attrs={'class': 'telefono'}), max_length=15, required=False, help_text='Opcional.')
+    email = forms.EmailField(
+        label='Email', widget=forms.TextInput(attrs={'class': 'email'}), max_length=254, required=True, help_text='Se requiere una direccion de email valida.')
+    password1=forms.CharField(
+        label='Password', widget=forms.PasswordInput(), max_length=30, required=True, help_text='Requerido. Al menos 8 caracteres y no pueden ser todos numeros.')
+    password2=forms.CharField(
+        label='Repetir Password', widget=forms.PasswordInput(), max_length=30, required=True, help_text='Requerido. Ingrese la misma contraseña que antes, para verificación.')
 
     class Meta:
         model = User
-        fields=['nombre','apellido','telefono','email','username','password1','password2']
-        help_text = {k:"" for k in fields }
+        fields=['username','first_name','last_name','telefono','email','password1','password2']

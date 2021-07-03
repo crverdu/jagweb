@@ -26,7 +26,7 @@
                     {% else %}
                     <a href="{% url 'login' %}" class="btn btn-outline-info"><img src="{% static 'assets/sign-in.png' %}" class="icon"> Login
                     </a>
-                    <a href="{% url 'user_reg' %}" class="btn btn-outline-info"><img src="{% static 'assets/register.png' %}" class="icon"> Register
+                    <a href="{% url 'register' %}" class="btn btn-outline-info"><img src="{% static 'assets/register.png' %}" class="icon"> Register
                     </a>
                     {% endif %} {% if perms.JAGWEB.carrito.view_carrito %}
                     <a href="#" class="btn btn-outline-info"><img src="{% static 'assets/shop.png' %}" class="icon"> Carrito
