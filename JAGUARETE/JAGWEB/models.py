@@ -1,5 +1,6 @@
 from django.db import models
-from datetime import datetime    
+from django.utils import timezone
+from django.contrib.auth.models import User   
 #Clase Categoria de productos
 class Categoria(models.Model):
     nombre=models.CharField(max_length=64) #Nombre de la categoria
@@ -22,5 +23,6 @@ class Producto (models.Model):
 
 #Clase Carrito
 class Carrito (models.Model):
-    fecha = models.DateTimeField(default=datetime.now)
+    fecha = models.DateField(default=timezone.now)
     producto = models.ManyToManyField(Producto,blank=True,related_name="prodCarrito")
+    cliente = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)

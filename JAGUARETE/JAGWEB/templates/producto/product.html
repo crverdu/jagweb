@@ -18,6 +18,9 @@
                 {% if perms.JAGWEB.add_producto %}
                     <a href="{% url 'edit_produc' un_producto.id %}" class="btn btn-outline-primary">Editar Producto</a> 
                 {% endif %}
+                {% if perms.JAGWEB.delete_producto %}
+                    <a href="{% url 'del_product' un_producto.id %}" class="btn btn-outline-primary">Eliminar Producto</a> 
+                {% endif %}
             </div>
         </div>
     </div>
