@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import render
 from .forms import AddCategory, AddProducto, RegisterUser
 from .models import Producto, Categoria, Carrito, Renglon
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required, permission_required
 
 from django.db.models.signals import post_save
@@ -27,6 +28,21 @@ def search_category(request, id_category):
     return render(request, "producto/searchResoult.html", {
         'una_categoria': Categoria.objects.get(id=id_category),
         'lst_productos': Producto.objects.filter(categoria=id_category)
+    })
+
+#busqueda por coincidencia
+def busqueda (request):
+    query = request.GET.get('buscar', '')
+    if query:
+        qset = ( 
+            Q(nombre__icontains=query) |
+            Q(descripcion__icontains=query)
+        )
+        lst_productos=Producto.objects.filter(qset).distinct()
+    else:
+        lst_productos = []
+    return render(request,'producto/searchResoult.html',{
+        'lst_productos':lst_productos
     })
 
 #Vista del producto, sin permisos requeridos.

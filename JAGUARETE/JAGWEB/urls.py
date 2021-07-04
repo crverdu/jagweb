@@ -9,6 +9,7 @@ urlpatterns = [
     path('producto/<int:idProd>', views.product, name="product"),
     path('about', views.about, name="about"),
     path('search/<int:id_category>', views.search_category, name="search_category"),
+    path('producto/busqueda/',views.busqueda,name='buscar'),
 
     #Usuarios
     path('accounts/', include('django.contrib.auth.urls')),
