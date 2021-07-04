@@ -28,8 +28,8 @@
                     </a>
                     <a href="{% url 'register' %}" class="btn btn-outline-info"><img src="{% static 'assets/register.png' %}" class="icon"> Register
                     </a>
-                    {% endif %} {% if perms.JAGWEB.carrito.view_carrito %}
-                    <a href="#" class="btn btn-outline-info"><img src="{% static 'assets/shop.png' %}" class="icon"> Carrito
+                    {% endif %} {% if perms.JAGWEB.view_carrito %}
+                    <a href="{% url 'cart_view' %}" class="btn btn-outline-info"><img src="{% static 'assets/shop.png' %}" class="icon"> Carrito
                     </a>
                     {% endif %}
                 </div>
@@ -66,6 +66,16 @@
                         {% if perms.JAGWEB.add_producto %}
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{%  url 'add_product'  %}">Agregar Prodcuto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{%  url 'prod_list'  %}">Listar Prodcutos</a>
+                        </li>
+                        {% endif %} {% if perms.JAGWEB.add_categoria %}
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{%  url 'add_cat'  %}">Agregar Categoria</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{%  url 'list_cat'  %}">Listar Categoria</a>
                         </li>
                         {% endif %}
                     </ul>

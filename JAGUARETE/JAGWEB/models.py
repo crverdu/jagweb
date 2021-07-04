@@ -20,9 +20,15 @@ class Producto (models.Model):
     #obtener el objeto producto
     def __str__(self):
         return f"Product ID #{self.id}:{self.nombre} - {self.descripcion} - {self.categoria} - {self.precio} - {self.imagen} "
-
 #Clase Carrito
 class Carrito (models.Model):
     fecha = models.DateField(default=timezone.now)
-    producto = models.ManyToManyField(Producto,blank=True,related_name="prodCarrito")
     cliente = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+
+#Clase Renglon del carrito
+class Renglon (models.Model):
+    producto=models.OneToOneField(Producto,on_delete=models.CASCADE,null=True,blank=True)
+    cantidad=models.SmallIntegerField(default=1)
+    carrito= models.ForeignKey(Carrito,on_delete=models.CASCADE,null=True,blank=True)
+
+
