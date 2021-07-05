@@ -9,7 +9,6 @@ from django.db.models import Q
 from .carrito import Carrito
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
-
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 # Create your views here.
@@ -68,13 +67,7 @@ class RegistroUsuario (CreateView):
         if created:
             group = Group.objects.get(name='comun')
             instance.groups.add(group)
-'''
-#Crear y asociar carrito al usuario recien registrado.
-@receiver(post_save, sender=User)
-def add_cart(sender, instance, created, **kwargs):
-        if created:
-            Carrito.objects.create(cliente=instance)
-'''
+
 
 #Listar productos, para vista de moderador
 class ListarProducto(PermissionRequiredMixin,ListView):
@@ -106,6 +99,7 @@ class EliminarProducto(PermissionRequiredMixin,DeleteView):
     template_name='producto/product_del.html'
     success_url=reverse_lazy('prod_list')
 
+#Agregar categorias, para vista de moderador
 class AgregarCategoria(PermissionRequiredMixin,CreateView):
     permission_required ='JAGWEB.add_categoria'
     model=Categoria
@@ -113,6 +107,7 @@ class AgregarCategoria(PermissionRequiredMixin,CreateView):
     template_name = 'categoria/category_add.html'
     success_url=reverse_lazy('list_cat')
 
+#Editar categorias, para vista de moderador
 class EditarCategoria (PermissionRequiredMixin,UpdateView):
     permission_required = 'JAGWEB.change_categoria'
     model= Categoria
@@ -120,6 +115,7 @@ class EditarCategoria (PermissionRequiredMixin,UpdateView):
     form_class = AddCategory
     success_url=reverse_lazy('list_cat')
 
+#Eliminar categorias, para vista de moderador
 class EliminarCategoria(PermissionRequiredMixin,DeleteView):
     permission_required = 'JAGWEB.delete_categoria'
     model=Categoria

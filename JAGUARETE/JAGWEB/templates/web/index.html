@@ -7,7 +7,12 @@
             <div class="card-body" style="text-align: center;">
                 <h5 class="card-title">{{producto.nombre}}</h5>
                 <p class="card-text">$ {{producto.precio}} </p>
-                <a href="{% url 'product' producto.id %}" class="btn btn-primary">Ir al producto</a>
+                {% if perms.JAGWEB.change_producto %}
+                    <a href="{% url 'edit_produc' producto.id %}" class="btn btn-primary">Ir al producto</a>
+                {% else %}
+                    <a href="{% url 'product' producto.id %}" class="btn btn-primary">Ir al producto</a>
+                {% endif %}
+                
             </div>
         </div>
     </div>
@@ -15,8 +20,13 @@
 </div>
 <div class="list-group" style="margin:1%; align-self: center;">
     {% for un_producto in top10_prod %}
-    <a href="{% url 'product' un_producto.id %}" class="list-group-item list-group-item-action list-group-item-light"> 
-            Nombre: {{un_producto.nombre}}
-    </a> {% endfor %}
+        {% if perms.JAGWEB.change_producto %}
+            <a href="{% url 'edit_produc' un_producto.id %}" class="list-group-item list-group-item-action list-group-item-light"> 
+            Nombre: {{un_producto.nombre}} </a>
+        {% else %}
+            <a href="{% url 'product' un_producto.id %}" class="list-group-item list-group-item-action list-group-item-light"> 
+            Nombre: {{un_producto.nombre}} </a>
+        {% endif %}
+    {% endfor %}
 </div>
 {% endblock %}

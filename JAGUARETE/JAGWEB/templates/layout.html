@@ -32,9 +32,7 @@
                     <a href="{% url 'cart_view' %}" class="btn btn-outline-info"><img src="{% static 'assets/shop.png' %}" class="icon"> Carrito {% if cantidad_productos > 0 %}
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
                             {{cantidad_productos}}
-                            <span class="visually-hidden">unread messages</span>
-                        </span>
-                        {% endif %}
+                        </span> {% endif %}
                     </a>
                     {% endif %}
                 </div>
