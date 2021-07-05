@@ -11,10 +11,12 @@ urlpatterns = [
     path('search/<int:id_category>', views.search_category, name="search_category"),
     path('producto/busqueda/',views.busqueda,name='buscar'),
 
+    #Compras
+
     #Usuarios
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/register',views.RegistroUsuario.as_view(),name='register'),
-    path('shop/carrito',views.cartView,name='cart_view'),
+
 
     #Moderador
     path('moderador',views.ListarProducto.as_view(), name='prod_list'),

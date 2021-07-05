@@ -29,7 +29,7 @@
                     <a href="{% url 'register' %}" class="btn btn-outline-info"><img src="{% static 'assets/register.png' %}" class="icon"> Register
                     </a>
                     {% endif %} {% if perms.JAGWEB.view_carrito %}
-                    <a href="{% url 'cart_view' %}" class="btn btn-outline-info"><img src="{% static 'assets/shop.png' %}" class="icon"> Carrito
+                    <a href="/JAGUARETE/JAGWEB/templates/carrito/carrito.html" class="btn btn-outline-info"><img src="{% static 'assets/shop.png' %}" class="icon"> Carrito
                     </a>
                     {% endif %}
                 </div>
@@ -59,6 +59,8 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{% url 'about' %}">Acerca de...</a>
+                        </li>
+                        <li class="nav-item">
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="mailto:cristian.krutki@gmail.com?subject=%20Jaguarete %20KAA %20S.A">Contacto</a>

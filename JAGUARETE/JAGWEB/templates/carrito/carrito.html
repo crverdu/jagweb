@@ -1,0 +1,30 @@
+{% extends 'layout.html' %} {% load static %} {% block body %}
+<h1>Carrito de {{user.name}} </h1>
+<div class="table-responsive">
+    <table class="table table-hover table-success table-sm ">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio $</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> NombreProducto </td>
+                <td>2</td>
+                <td>$120,00</td>
+                <td>
+                    <a href="#" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <h5>Total del Carrito</h5>
+            <span style="color: bisque;font-weight: bold;font: size 10px;">$12.000,00</span>
+        </tfoot>
+    </table>
+</div>
+
+{% endblock %}

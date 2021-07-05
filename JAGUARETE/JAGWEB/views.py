@@ -4,8 +4,9 @@ from django.views.generic import ListView
 from django.urls import reverse_lazy
 from django.shortcuts import render
 from .forms import AddCategory, AddProducto, RegisterUser
-from .models import Producto, Categoria, Carrito, Renglon
+from .models import Producto, Categoria
 from django.db.models import Q
+from .carrito import Carrito
 from django.contrib.auth.decorators import login_required, permission_required
 
 from django.db.models.signals import post_save
@@ -14,6 +15,7 @@ from django.dispatch import receiver
 
 #Home de la pagina, sin permisos requeridos
 def index(request):
+    carrito = Carrito(request)
     return render(request, "web/index.html", {
         'top3_prod': Producto.objects.all().order_by("-id")[:3],
         'top10_prod': Producto.objects.all().order_by("-id")[3:10]
@@ -65,12 +67,13 @@ class RegistroUsuario (CreateView):
         if created:
             group = Group.objects.get(name='comun')
             instance.groups.add(group)
-
+'''
 #Crear y asociar carrito al usuario recien registrado.
 @receiver(post_save, sender=User)
 def add_cart(sender, instance, created, **kwargs):
         if created:
             Carrito.objects.create(cliente=instance)
+'''
 
 #Listar productos, para vista de moderador
 class ListarProducto(ListView):
@@ -121,8 +124,29 @@ class ListarCategoria(ListView):
     template_name='categoria/category_list.html'
     queryset = Categoria.objects.all().order_by("id")
 
-def cartView(request):
-    shop = Carrito.objects.get()
-    detalle = Renglon.objects.get()
-    return render(request,'carrito/cart_list.html',{'carrito':shop,'detalle':detalle
-    })
+
+def cart_add_prod (request,id_prod):
+    carrito = Carrito(request)
+    un_prod = Producto.objects.get(id=id_prod)
+    carrito.agregarProd(producto=un_prod)
+    return reverse_lazy('index')
+
+
+def cart_del_prod (request,id_prod):
+    carrito = Carrito(request)
+    un_prod = Producto.objects.get(id=id_prod)
+    carrito.eliminarProd(producto=un_prod)
+    return reverse_lazy('index')
+
+
+def cart_rest_prod (request,id_prod):
+    carrito = Carrito(request)
+    un_prod = Producto.objects.get(id=id_prod)
+    carrito.restar_prod(producto=un_prod)
+    return reverse_lazy('index')
+
+def limpiar_carrito (request):
+    carrito = Carrito(request)
+    carrito.limpiar_carrito()
+    return reverse_lazy('index')
+

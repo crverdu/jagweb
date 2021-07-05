@@ -14,21 +14,11 @@ class Producto (models.Model):
     nombre = models.CharField(max_length=180) #nombre del producto 180 caracteres max
     descripcion = models.TextField() #descripcion breve del producto 250 caracteres
     categoria = models.ForeignKey(Categoria,on_delete=models.CASCADE,related_name="categ") #categoria referenciada
-    precio=models.FloatField() #precio del producto en float
+    precio=models.DecimalField(max_digits=10, decimal_places=2) #precio del producto en float
     imagen= models.ImageField(upload_to='products/', default='products/default.png')   #imagen del producto
 
     #obtener el objeto producto
     def __str__(self):
         return f"Product ID #{self.id}:{self.nombre} - {self.descripcion} - {self.categoria} - {self.precio} - {self.imagen} "
-#Clase Carrito
-class Carrito (models.Model):
-    fecha = models.DateField(default=timezone.now)
-    cliente = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-
-#Clase Renglon del carrito
-class Renglon (models.Model):
-    producto=models.OneToOneField(Producto,on_delete=models.CASCADE,null=True,blank=True)
-    cantidad=models.SmallIntegerField(default=1)
-    carrito= models.ForeignKey(Carrito,on_delete=models.CASCADE,null=True,blank=True)
 
 
