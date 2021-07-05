@@ -8,6 +8,7 @@ from .models import Producto, Categoria
 from django.db.models import Q
 from .carrito import Carrito
 from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -76,84 +77,102 @@ def add_cart(sender, instance, created, **kwargs):
 '''
 
 #Listar productos, para vista de moderador
-class ListarProducto(ListView):
+class ListarProducto(PermissionRequiredMixin,ListView):
+    permission_required = ('JAGWEB.change_producto', 'JAGWEB.view_producto')
     model = Producto
     template_name='web/index_staff.html'
     queryset = Producto.objects.all().order_by("-id")
 
 #Agregar un nuevo producto, moderador o root
-class AgregarProducto (CreateView):
+class AgregarProducto (PermissionRequiredMixin,CreateView):
+    permission_required = 'JAGWEB.add_producto'
     model = Producto
     form_class= AddProducto
     template_name='producto/product_add.html'
     success_url = reverse_lazy ('prod_list')
 
 #Update de  producto, moderador o root
-class ActualizarProducto (UpdateView):
+class ActualizarProducto (PermissionRequiredMixin,UpdateView):
+    permission_required = 'JAGWEB.change_producto'
     model=Producto
     template_name = 'producto/product_edit.html'
     form_class=AddProducto
     success_url = reverse_lazy('prod_list')
 
 #Delete de producto, moderador o root
-class EliminarProducto(DeleteView):
+class EliminarProducto(PermissionRequiredMixin,DeleteView):
+    permission_required = 'JAGWEB.delete_producto'
     model=Producto
     template_name='producto/product_del.html'
     success_url=reverse_lazy('prod_list')
 
-class AgregarCategoria(CreateView):
+class AgregarCategoria(PermissionRequiredMixin,CreateView):
+    permission_required ='JAGWEB.add_categoria'
     model=Categoria
     form_class=AddCategory
     template_name = 'categoria/category_add.html'
     success_url=reverse_lazy('list_cat')
 
-class EditarCategoria (UpdateView):
+class EditarCategoria (PermissionRequiredMixin,UpdateView):
+    permission_required = 'JAGWEB.change_categoria'
     model= Categoria
     template_name = 'categoria/category_upd.html'
     form_class = AddCategory
     success_url=reverse_lazy('list_cat')
 
-class EliminarCategoria(DeleteView):
+class EliminarCategoria(PermissionRequiredMixin,DeleteView):
+    permission_required = 'JAGWEB.delete_categoria'
     model=Categoria
     template_name='categoria/category_del.html'
     success_url=reverse_lazy('list_cat')
 
 #Listar categorias, para vista de moderador
-class ListarCategoria(ListView):
+class ListarCategoria(PermissionRequiredMixin,ListView):
+    permission_required = ('JAGWEB.view_categoria','JAGWEB.add_categoria')
     model = Categoria
     template_name='categoria/category_list.html'
     queryset = Categoria.objects.all().order_by("id")
 
-
+@login_required
+@permission_required('JAGWEB.add_carrito') 
 def cart_add_prod (request,id_prod):
     carrito = Carrito(request)
     un_prod = Producto.objects.get(id=id_prod)
     carrito.agregarProd(producto=un_prod)
     return redirect ("index")
 
+@login_required
+@permission_required('JAGWEB.add_carrito') 
 def cart_sum_prod (request,id_prod):
     carrito = Carrito(request)
     un_prod = Producto.objects.get(id=id_prod)
     carrito.agregarProd(producto=un_prod)
     return redirect ('cart_view')
 
+@login_required
+@permission_required('JAGWEB.delete_carrito') 
 def cart_del_prod (request,id_prod):
     carrito = Carrito(request)
     un_prod = Producto.objects.get(id=id_prod)
     carrito.eliminarProd(producto=un_prod)
     return redirect ('cart_view')
 
-
+@login_required
+@permission_required('JAGWEB.delete_carrito') 
 def cart_rest_prod (request,id_prod):
     carrito = Carrito(request)
     un_prod = Producto.objects.get(id=id_prod)
     carrito.restar_prod(producto=un_prod)
     return redirect ('cart_view')
 
+@login_required
+@permission_required('JAGWEB.delete_carrito') 
 def limpiar_carrito (request):
     carrito = Carrito(request)
     carrito.limpiar_carrito()
     return redirect ('cart_view')
 
+@login_required
+@permission_required('JAGWEB.view_carrito') 
 def carrito_view(request):
     return render(request,'carrito/carrito.html')

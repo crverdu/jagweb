@@ -1,31 +1,32 @@
-{% extends "layout.html" %} {% load static %} {% load crispy_forms_tags %} {% block body %} 
-{% if form.errors %}
-    <div class="alert alert-danger" role="alert">
-        Ocurri&oacute; un error con el formulario.
-    </div>
+{% extends "layout.html" %} {% load static %} {% load crispy_forms_tags %} {% block body %} {% if form.errors %}
+<div class="alert alert-danger" role="alert">
+    Ocurri&oacute; un error con el formulario.
+</div>
 {% endif %}
 <h1>Registro de Productos</h1>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %} 
-    <div class="row rform justify-content-center">
-        <div class="col-12 col-md-6">
-            {{ form.nombre|as_crispy_field }}
+<div class="container-sm">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row rform justify-content-center">
+            <div class="col-12 col-md-6">
+                {{ form.nombre|as_crispy_field }}
+            </div>
+            <div class="col-12 col-md-6">
+                {{ form.categoria|as_crispy_field}}
+            </div>
+            <div class="col-12 col-md-6">
+                {{ form.precio|as_crispy_field }}
+            </div>
+            <div class="col-12 col-md-6">
+                {{ form.imagen|as_crispy_field }}
+            </div>
+            <div class="col-12 col-md-6 align-self-center">
+                {{ form.descripcion|as_crispy_field }}
+            </div>
         </div>
-        <div class="col-12 col-md-6">
-            {{ form.categoria|as_crispy_field}}
+        <div class="span" style="padding: 20px; text-align: center;">
+            <button type="submit" class="btn btn-outline-light">Guardar Producto</button>
         </div>
-        <div class="col-12 col-md-6">
-            {{ form.precio|as_crispy_field }}
-        </div>
-        <div class="col-12 col-md-6">
-            {{ form.imagen|as_crispy_field }}
-        </div>
-        <div class="col-12 col-md-6 align-self-center">
-            {{ form.descripcion|as_crispy_field }}
-        </div>
-    </div>
-    <div class="span" style="padding: 20px; text-align: center;">
-        <button type="submit" class="btn btn-outline-light">Guardar Producto</button>
-    </div>
-</form>
+    </form>
+</div>
 {% endblock %}

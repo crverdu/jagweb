@@ -1,3 +1,6 @@
 {% extends 'layout.html' %} {% load static %} {% block body %}
 <h1>Logout correcto</h1>
-<a href="{% url 'login'%}">Click aqui para volver a acceder.</a> {% endblock body %}
+<div class="span" style="padding: 20px; text-align: left;">
+    <a class="btn btn-outline-primary" href="{% url 'login' %}">Volver al Login</a>
+</div>
+{% endblock%}

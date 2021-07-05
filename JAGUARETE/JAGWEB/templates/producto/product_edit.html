@@ -4,28 +4,30 @@
 </div>
 {% endif %}
 <h1>Edici&oacute;n de Productos</h1>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="row rform justify-content-center">
-        <div class="col-12 col-md-6">
-            {{ form.nombre|as_crispy_field }}
+<div class="container-sm">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row rform justify-content-center">
+            <div class="col-12 col-md-6">
+                {{ form.nombre|as_crispy_field }}
+            </div>
+            <div class="col-12 col-md-6">
+                {{ form.categoria|as_crispy_field }}
+            </div>
+            <div class="col-12 col-md-6">
+                {{ form.precio|as_crispy_field }}
+            </div>
+            <div class="col-12 col-md-6">
+                {{ form.imagen|as_crispy_field }}
+            </div>
+            <div class="col-12 col-md-6 align-self-center">
+                {{ form.descripcion|as_crispy_field }}
+            </div>
         </div>
-        <div class="col-12 col-md-6">
-            {{ form.categoria|as_crispy_field }}
+        <div class="span" style="padding: 20px; text-align: center;">
+            <button type="submit" class="btn btn-outline-light">Guardar</button>
+            <a href="{% url 'index' %}" class="btn btn-outline-warning">Cancelar</a>
         </div>
-        <div class="col-12 col-md-6">
-            {{ form.precio|as_crispy_field }}
-        </div>
-        <div class="col-12 col-md-6">
-            {{ form.imagen|as_crispy_field }}
-        </div>
-        <div class="col-12 col-md-6 align-self-center">
-            {{ form.descripcion|as_crispy_field }}
-        </div>
-    </div>
-    <div class="span" style="padding: 20px; text-align: center;">
-        <button type="submit" class="btn btn-outline-light">Guardar</button>
-        <a href="{% url 'index' %}" class="btn btn-outline-warning">Cancelar</a>
-    </div>
-</form>
+    </form>
+</div>
 {% endblock %}
