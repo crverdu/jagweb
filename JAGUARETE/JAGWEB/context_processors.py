@@ -13,3 +13,9 @@ def importe_total_carrito (request):
         for key, value in request.session['carrito'].items():
             total=total+(float(value["precio"])*value["cantidad"])
     return {"importe_total_carrito":total}
+
+def cantidad_productos (request):
+    cantidad=0
+    if request.user.is_authenticated:
+        cantidad = len(request.session['carrito'])
+    return{"cantidad_productos":cantidad}

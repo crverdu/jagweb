@@ -29,7 +29,12 @@
                     <a href="{% url 'register' %}" class="btn btn-outline-info"><img src="{% static 'assets/register.png' %}" class="icon"> Register
                     </a>
                     {% endif %} {% if perms.JAGWEB.view_carrito %}
-                    <a href="{% url 'cart_view' %}" class="btn btn-outline-info"><img src="{% static 'assets/shop.png' %}" class="icon"> Carrito
+                    <a href="{% url 'cart_view' %}" class="btn btn-outline-info"><img src="{% static 'assets/shop.png' %}" class="icon"> Carrito {% if cantidad_productos > 0 %}
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                            {{cantidad_productos}}
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                        {% endif %}
                     </a>
                     {% endif %}
                 </div>
@@ -67,10 +72,10 @@
                         </li>
                         {% if perms.JAGWEB.add_producto %}
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{%  url 'add_product'  %}">Agregar Prodcuto</a>
+                            <a class="nav-link" aria-current="page" href="{%  url 'add_product'  %}">Agregar Producto</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{%  url 'prod_list'  %}">Listar Prodcutos</a>
+                            <a class="nav-link" aria-current="page" href="{%  url 'prod_list'  %}">Listar Productos</a>
                         </li>
                         {% endif %} {% if perms.JAGWEB.add_categoria %}
                         <li class="nav-item">
@@ -94,7 +99,7 @@
             {% block body %} {% endblock %}
         </div>
     </div>
-    <div class="footer">
+    <div class="footer" style="margin: 0px;">
         <div class="row justify-content-center" style="background-color: black; height: 5%;">
             <div class="col-md-auto">
                 <p style="color: whitesmoke;font-size:20px">JAGUARETE KAA S.A. ©2021 All rights reserved </p>

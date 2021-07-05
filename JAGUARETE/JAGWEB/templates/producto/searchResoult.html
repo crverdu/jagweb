@@ -1,18 +1,17 @@
 {% extends "layout.html" %} {% load static %} {% block body %}
 <div class="container container-fluid">
-    <h1>Resultados de </h1>
+    <h1>Resultados</h1>
     {% if una_categoria %}
-        <h2>Item de categor&iacute;a {{una_categoria.nombre}} </h2>
+    <h2 style="color:rgb(19, 17, 17);font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 20px;">Productos de categor&iacute;a {{una_categoria.nombre}} </h2>
     {% else %}
-        <h2>Item relacionados</h2>
-    {% endif %}
-    {% if lst_productos %}
-        <div class="list-group">
-            {% for un_producto in lst_productos %}
-            <a href="{% url 'product' un_producto.id %}" class="list-group-item list-group-item-action">{{un_producto.nombre}}</a> {% endfor %}
-        </div>
+    <h2 style="color:rgb(19, 17, 17);font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 20px;">Productos relacionados</h2>
+    {% endif %} {% if lst_productos %}
+    <div class="list-group">
+        {% for un_producto in lst_productos %}
+        <a href="{% url 'product' un_producto.id %}" class="list-group-item list-group-item-action">{{un_producto.nombre}}</a> {% endfor %}
+    </div>
     {% else %}
-        <h2>La b&uacute;squeda no tuvo resultados </h2>
+    <h2 style="color:rgb(19, 17, 17);font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 20px;">La b&uacute;squeda no tuvo resultados </h2>
     {% endif %}
 </div>
 {% endblock %}
