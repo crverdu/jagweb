@@ -5,11 +5,11 @@ class Carrito:
         Initialize the cart.
         """
         self.session = request.session
-        cart = self.session.get("carrito")
-        if not cart:
+        carrito = self.session.get("carrito")
+        if not carrito:
             # save an empty cart in the session
-            cart = self.session['carrito'] = {}
-        self.cart = cart
+            carrito = self.session['carrito'] = {}
+        self.carrito = carrito
 
     def agregarProd(self, producto):
         if(str(producto.id) not in self.carrito.keys()):

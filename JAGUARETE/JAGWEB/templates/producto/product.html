@@ -13,7 +13,7 @@
             </div>
             <div class="card-footer">
                 {% if perms.JAGWEB.view_carrito %}
-                <a href="{% url 'add_cart' %}" class="btn btn-primary">Agregar Carrito</a> {% endif %} {% if perms.JAGWEB.add_producto %}
+                <a href="{% url 'cart_add_prod' un_producto.id %}" class="btn btn-primary">Agregar Carrito</a> {% endif %} {% if perms.JAGWEB.add_producto %}
                 <a href="{% url 'edit_produc' un_producto.id %}" class="btn btn-outline-primary">Editar Producto</a> {% endif %} {% if perms.JAGWEB.delete_producto %}
                 <a href="{% url 'del_product' un_producto.id %}" class="btn btn-outline-primary">Eliminar Producto</a> {% endif %}
             </div>

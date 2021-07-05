@@ -12,10 +12,16 @@ urlpatterns = [
     path('producto/busqueda/',views.busqueda,name='buscar'),
 
     #Compras
-
+    path('shop/carrito',views.carrito_view,name='cart_view'),
+    path('shop/agregar/<int:id_prod>',views.cart_add_prod,name='cart_add_prod'),
+    path('shop/sumar/<int:id_prod>',views.cart_sum_prod,name='cart_sum_prod'),
+    path('shop/eliminar/<int:id_prod>',views.cart_del_prod,name='cart_del_prod'),
+    path('shop/quitar/<int:id_prod>',views.cart_rest_prod,name='cart_rest_prod'),
+    path('shop/limpiar',views.limpiar_carrito,name='cart_clean'),
     #Usuarios
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/register',views.RegistroUsuario.as_view(),name='register'),
+
 
 
     #Moderador

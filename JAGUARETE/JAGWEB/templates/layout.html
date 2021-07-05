@@ -29,7 +29,7 @@
                     <a href="{% url 'register' %}" class="btn btn-outline-info"><img src="{% static 'assets/register.png' %}" class="icon"> Register
                     </a>
                     {% endif %} {% if perms.JAGWEB.view_carrito %}
-                    <a href="/JAGUARETE/JAGWEB/templates/carrito/carrito.html" class="btn btn-outline-info"><img src="{% static 'assets/shop.png' %}" class="icon"> Carrito
+                    <a href="{% url 'cart_view' %}" class="btn btn-outline-info"><img src="{% static 'assets/shop.png' %}" class="icon"> Carrito
                     </a>
                     {% endif %}
                 </div>

@@ -2,7 +2,7 @@ from django.contrib.auth.models import Group, User
 from django.views.generic.edit import CreateView, DeleteView, UpdateView 
 from django.views.generic import ListView
 from django.urls import reverse_lazy
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .forms import AddCategory, AddProducto, RegisterUser
 from .models import Producto, Categoria
 from django.db.models import Q
@@ -129,24 +129,31 @@ def cart_add_prod (request,id_prod):
     carrito = Carrito(request)
     un_prod = Producto.objects.get(id=id_prod)
     carrito.agregarProd(producto=un_prod)
-    return reverse_lazy('index')
+    return redirect ("index")
 
+def cart_sum_prod (request,id_prod):
+    carrito = Carrito(request)
+    un_prod = Producto.objects.get(id=id_prod)
+    carrito.agregarProd(producto=un_prod)
+    return redirect ('cart_view')
 
 def cart_del_prod (request,id_prod):
     carrito = Carrito(request)
     un_prod = Producto.objects.get(id=id_prod)
     carrito.eliminarProd(producto=un_prod)
-    return reverse_lazy('index')
+    return redirect ('cart_view')
 
 
 def cart_rest_prod (request,id_prod):
     carrito = Carrito(request)
     un_prod = Producto.objects.get(id=id_prod)
     carrito.restar_prod(producto=un_prod)
-    return reverse_lazy('index')
+    return redirect ('cart_view')
 
 def limpiar_carrito (request):
     carrito = Carrito(request)
     carrito.limpiar_carrito()
-    return reverse_lazy('index')
+    return redirect ('cart_view')
 
+def carrito_view(request):
+    return render(request,'carrito/carrito.html')
