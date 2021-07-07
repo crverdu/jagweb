@@ -12,7 +12,7 @@ Trabajo Final Polo TIC JAGWEB
 # Base de Datos
     SQLite 3
 
-#Software utilizado
+# Software utilizado
 
     Django 3.2.4 
     Bootstrap 5
@@ -23,7 +23,7 @@ Trabajo Final Polo TIC JAGWEB
     crispy-forms    pip install django-crispy-forms
     Django          pip install django
     Gestion Imág    pip install Pillow
-#Usuarios
+# Usuarios
     SuperUsuario: verdu pass: verdu123456
     moderador: leonel pass: soloeu123456
     cliente: ckrutki pass: soloeu123456
