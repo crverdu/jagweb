@@ -6,10 +6,16 @@
 <div class="container-sm">
     <form method='post'>
         {% csrf_token %}
-        <p> Confirme la eliminaci&oacute;n del registro {{ object }} </p>
+        <p style="color:bisque; font-size: 20px;font-weight: bold;"> Confirme la eliminaci&oacute;n del registro: </p>
+        <ul style="color: bisque;">
+            <li>{{object.nombre}}</li>
+            <li>{{object.categoria}}</li>
+            <li>{{object.precio}}</li>
+            <li>{{object.descripcion}}</li>
+        </ul>
         <div class="span" style="padding: 20px; text-align: center;">
             <button type="submit" class="btn btn-outline-light">Confirmar</button>
-            <a href="{% url 'index' %}" class="btn btn-outline-warning">Cancelar</a>
+            <a href="{% url 'prod_list' %}" class="btn btn-outline-warning">Cancelar</a>
         </div>
     </form>
 </div>

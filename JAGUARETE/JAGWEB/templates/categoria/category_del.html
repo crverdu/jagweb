@@ -1,17 +1,18 @@
-{% extends "layout.html" %} {% load static %} {% load crispy_forms_tags %} 
-{% block body %} 
-    {% if form.errors %}
-        <div class="alert alert-danger" role="alert">
-            Ocurri&oacute; un error con el formulario.
-        </div>
-    {% endif %}
-    <h1>Eliminar Categor&iacute;a</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <p> Confirme la eliminaci&oacute;n del registro {{ object }} </p>
-        <div class="span" style="padding: 20px; text-align: center;">
-            <button type="submit" class="btn btn-outline-light">Confirmar</button>
-            <a href="{% url 'index' %}" class="btn btn-outline-warning">Cancelar</a>
-        </div>
-    </form>
+{% extends "layout.html" %} {% load static %} {% load crispy_forms_tags %} {% block body %} {% if form.errors %}
+<div class="alert alert-danger" role="alert">
+    Ocurri&oacute; un error con el formulario.
+</div>
+{% endif %}
+<h1>Eliminar Categor&iacute;a</h1>
+<form method="POST">
+    {% csrf_token %}
+    <p style="color:bisque; font-size: 20px;font-weight: bold;"> Confirme la eliminaci&oacute;n del registro: </p>
+    <ul style="color: bisque;">
+        <li>{{object.nombre}}</li>
+    </ul>
+    <div class="span" style="padding: 20px; text-align: center;">
+        <button type="submit" class="btn btn-outline-light">Confirmar</button>
+        <a href="{% url 'list_cat' %}" class="btn btn-outline-warning">Cancelar</a>
+    </div>
+</form>
 {% endblock %}
