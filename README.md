@@ -2,7 +2,7 @@
 
 Trabajo Final Polo TIC JAGWEB
 
-#Módulos
+# Módulos
  CRUD Productos.
  CRUD Categorias.
  Registro de usuarios (por defecto rol común)
