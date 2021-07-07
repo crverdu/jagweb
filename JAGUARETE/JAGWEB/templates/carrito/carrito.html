@@ -1,7 +1,7 @@
 {% extends 'layout.html' %} {% load static %} {% block body %}
 <h1>Carrito de {{request.user}} </h1>
-<div class="table-responsive">
-    <table class="table table-hover table-xs ">
+<div class="container-sm">
+    <table class="table table-secondary table-responsive-sm table-hover .table-striped table-xs ">
         <thead class="table-dark">
             <tr>
                 <th>Nombre</th>
@@ -12,49 +12,47 @@
             </tr>
         </thead>
         <tbody>
-            {% if request.session.carrito.items %}
-                {% for key,value in request.session.carrito.items %}
-                    <tr>
-                        <td> {{value.nombre}} </td>
-                        <td>{{value.cantidad}}</td>
-                        <td>
-                            <a href="{% url 'cart_rest_prod' key %}" class="btn btn-sm btn-success">-</a>
-                            <a href="{% url 'cart_sum_prod' key %}" class="btn btn-sm btn-success">+</a>
-                        </td>
-                        <td>${{value.precio}}</td>
-                        <td>
-                            <a href="{% url 'cart_del_prod' key %}" class="btn btn-danger">Eliminar</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            {% else %}
-                <tr>
-                    <td colspan="5">
-                        <div class="alert alert-info text-center">
-                            Acutalmente no tiene art&iacute;culos en el carrito.
-                        </div>
-                    </td>    
-                </tr>
-                
+            {% if request.session.carrito.items %} {% for key,value in request.session.carrito.items %}
+            <tr>
+                <td> {{value.nombre}} </td>
+                <td>{{value.cantidad}}</td>
+                <td>
+                    <a href="{% url 'cart_rest_prod' key %}" class="btn btn-sm btn-success">-</a>
+                    <a href="{% url 'cart_sum_prod' key %}" class="btn btn-sm btn-success">+</a>
+                </td>
+                <td>${{value.precio}}</td>
+                <td>
+                    <a href="{% url 'cart_del_prod' key %}" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %} {% else %}
+            <tr>
+                <td colspan="5">
+                    <div class="alert alert-info text-center">
+                        Acutalmente no tiene art&iacute;culos en el carrito.
+                    </div>
+                </td>
+            </tr>
+
             {% endif %}
             <!--
             
             -->
         </tbody>
-        <tfoot>
+        <tfoot class="table-dark">
             <tr class="text-center">
                 <td colspan="5">
                     <h5>Total del Carrito</h5>
                     <span style="color:white;font-weight: bold;font: size 10px;">$ {{importe_total_carrito}}</span>
                 </td>
             </tr>
-            
+
         </tfoot>
     </table>
-</div>
-<div class="span" style="padding: 20px; text-align: right;">
-    <a href="{% url 'cart_clean' %}" class="btn btn-primary">Vaciar Carrito</a>
-    <a href="#" class="btn btn-success">Finalizar Compra</a>
+    <div class="span" style="padding: 20px; text-align: right;">
+        <a href="{% url 'cart_clean' %}" class="btn btn-primary">Vaciar Carrito</a>
+        <a href="#" class="btn btn-success">Finalizar Compra</a>
+    </div>
 </div>
 
 {% endblock %}
