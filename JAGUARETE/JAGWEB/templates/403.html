@@ -1,0 +1,9 @@
+{% extends "layout.html" %} {% load static %} {% block body %}
+<h1 class="p-3 mb-2 bg-danger text-white" style="text-align: center">
+    Sin permisos para ver esta p&aacute;gina</h1>
+<img src="{% static 'assets/3805046.jpg ' %}" class="rounded mx-auto d-block" style="height: 50%; width:50%;" alt="...">
+<div class="span" style="padding: 20px; text-align: center;">
+    <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+    <a class="btn btn-primary" href="{% url 'index' %}">Inicio</a>
+</div>
+<a href='https://www.freepik.es/vectores/web'>Vector de Web creado por stories - www.freepik.es</a> {% endblock body %}
